@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int dir = 0;
     [SerializeField] private Animator anim;
+    public bool isInverse = false;
 
     void Start()
     {
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        if (!isInverse)
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        else
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime * (-1));
     }
 }
