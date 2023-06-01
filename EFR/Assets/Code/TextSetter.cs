@@ -6,10 +6,10 @@ using TMPro;
 public class TextSetter : MonoBehaviour
 {
     public int numberOfKeys = 0;
+    public TMP_Text currentText;
 
     void Update()
     {
-        TextMeshPro textmeshPro = GetComponent<TextMeshPro>();
-        textmeshPro.SetText(numberOfKeys.ToString());
+        currentText.text = numberOfKeys.ToString() + "/7";
     }
 }
