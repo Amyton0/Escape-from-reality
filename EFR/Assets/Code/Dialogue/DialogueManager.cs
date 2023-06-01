@@ -5,58 +5,53 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TMP_Text dialogueText;
-    public TMP_Text nameText;
+    public GameObject panelDialog;
+    public TMP_Text dialog;
 
-    public Animator comment;
-    public Animator dialoge;
-
-    private Queue<string> sentences;
-
-    private void Start()
+    public string[] message = new string[10];
+    public bool dialogStart = false;
+    private int i = 1;
+ 
+    void Start()
     {
-        sentences = new Queue<string>();
+        
+        panelDialog.SetActive(false);
+
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        comment.SetBool("isComment", false);
-        dialoge.SetBool("isDialogue", true);
-
-        nameText.text = dialogue.name;
-        sentences.Clear();
-
-        foreach(string sentence in dialogue.sentences)
+        if (collision.tag == "Player")
         {
-            sentences.Enqueue(sentence);
-        }
-        DisplayNextSentence();
-    }
+            panelDialog.SetActive(true);
+            dialog.text = message[0];
+            dialogStart = true;
 
-    public void DisplayNextSentence()
-    {
-        if(sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
-    }
-
-    IEnumerator TypeSentence(string sentence)
-    {
-        dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return null;
         }
     }
-
-    public void EndDialogue()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        dialoge.SetBool("isDialogue", false);
+        panelDialog.SetActive(false);
+        dialogStart = false;
     }
+
+    private void Update()
+    {
+        if (dialogStart == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Q) && i<10)
+            {
+                dialog.text = message[i] ;
+                i++;
+            }
+
+        }
+        if (i == 10)
+        {
+            i = 0;
+            panelDialog.SetActive(false);
+        }
+
+
+        }
 }
