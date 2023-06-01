@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Capybara
+  - Gosling
+  - Student
+  - Sina
+  - Zina
+  - Pyro
+  - izum
   layers:
   - Default
   - TransparentFX
