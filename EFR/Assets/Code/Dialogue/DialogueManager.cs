@@ -61,9 +61,11 @@ public class DialogueManager : MonoBehaviour
 
     public string[] message = new string[22];
     public bool dialogStart = false;
+    private bool[] keyTaken = new bool[7] { false, false, false, false, false, false, false };
     private bool isAnecdote = false;
     private int i = 1;
     private int k = 0;
+    [SerializeField] private GameObject _object;
 
     void Start()
     {
@@ -80,12 +82,12 @@ public class DialogueManager : MonoBehaviour
             dialog.text = message[0];
             dialogStart = true;
             string name = gameObject.tag;
-
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         EndDialogue();
+        i = 1;
     }
     public void EndDialogue()
     {
@@ -102,8 +104,15 @@ public class DialogueManager : MonoBehaviour
         }
         if (i == 51)
         {
-            i = 0;
+            i = 1;
             panelDialog.SetActive(false);
+
+            if (!keyTaken[5])
+            {
+                TextSetter textSetter = _object.GetComponent<TextSetter>();
+                textSetter.numberOfKeys += 1;
+                keyTaken[5] = true;
+            }
         }
     }
     private void Update()
@@ -122,6 +131,13 @@ public class DialogueManager : MonoBehaviour
                 {
                     i = 0;
                     panelDialog.SetActive(false);
+
+                    if (!keyTaken[0])
+                    {
+                        TextSetter textSetter = _object.GetComponent<TextSetter>();
+                        textSetter.numberOfKeys += 1;
+                        keyTaken[0] = true;
+                    }
                 }
             }
 
@@ -136,6 +152,13 @@ public class DialogueManager : MonoBehaviour
                 {
                     i = 0;
                     panelDialog.SetActive(false);
+
+                    if (!keyTaken[1])
+                    {
+                        TextSetter textSetter = _object.GetComponent<TextSetter>();
+                        textSetter.numberOfKeys += 1;
+                        keyTaken[1] = true;
+                    }
                 }
             }
 
@@ -151,6 +174,13 @@ public class DialogueManager : MonoBehaviour
                 {
                     i = 0;
                     panelDialog.SetActive(false);
+
+                    if (!keyTaken[2])
+                    {
+                        TextSetter textSetter = _object.GetComponent<TextSetter>();
+                        textSetter.numberOfKeys += 1;
+                        keyTaken[2] = true;
+                    }
                 }
             }
 
@@ -165,6 +195,13 @@ public class DialogueManager : MonoBehaviour
                 {
                     i = 0;
                     panelDialog.SetActive(false);
+
+                    if (!keyTaken[3])
+                    {
+                        TextSetter textSetter = _object.GetComponent<TextSetter>();
+                        textSetter.numberOfKeys += 1;
+                        keyTaken[3] = true;
+                    }
                 }
             }
 
@@ -179,6 +216,13 @@ public class DialogueManager : MonoBehaviour
                 {
                     i = 0;
                     panelDialog.SetActive(false);
+
+                    if (!keyTaken[4])
+                    {
+                        TextSetter textSetter = _object.GetComponent<TextSetter>();
+                        textSetter.numberOfKeys += 1;
+                        keyTaken[4] = true;
+                    }
                 }
             }
 
@@ -226,6 +270,13 @@ public class DialogueManager : MonoBehaviour
                 {
                     i = 0;
                     panelDialog.SetActive(false);
+
+                    if (!keyTaken[6])
+                    {
+                        TextSetter textSetter = _object.GetComponent<TextSetter>();
+                        textSetter.numberOfKeys += 1;
+                        keyTaken[6] = true;
+                    }
                 }
             }
         }
